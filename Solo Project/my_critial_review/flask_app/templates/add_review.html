@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap Example</title>
+<!-- load Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<!-- Optional JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="fluid-container">
+        <div class="row">
+            <div class="col-12">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div>
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith%}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5" style="background-color:royalblue;">
+                <h1>My Critical Review</h1></br>
+                <h2>Add a Review</h2>
+            </div>
+            <div class="col-6" style="background-color:royalblue;">
+                <img src="{{ url_for('static', filename='images/header_image.jpg') }}">
+            </div>
+            <div class="col-1" style="background-color:royalblue;">
+                <a href="/dashboard" class="btn btn-primary" style="background-color: midnightblue; border-radius: 8px;">Dashboard</a></br>
+                <a href="/user/logout" class="btn btn-primary" style="background-color:midnightblue; border-radius: 8px;">Logout</a>
+            </div>
+        </div>
+        <div class="row">
+            <form action="/review/add" method='POST' class="col-1" style="background-color: lightgray;">
+                <div class="form-group mt-3">
+                    <label for="tittle">Tittle:</label>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="media">Media:</label>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="rating">Rating:</label>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="comments">Comments:</label>
+                </div>
+            </form>
+            <form action="/review/add" method='POST' class="col-11" style="background-color: lightgray;">
+                <div class="form-group mt-3">
+                    <input type="text" name="tittle">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="media">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="number" name="rating">
+                </div>
+                <div class="form-group mt-3">
+                    <textarea name="comments"></textarea>
+                </div>
+                <div style="padding-top: 10px;">
+                    <button class="btn btn-primary" style="background-color: darkcyan; border-radius: 8px;">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

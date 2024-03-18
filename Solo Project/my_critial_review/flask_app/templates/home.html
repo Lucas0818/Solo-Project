@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap Example</title>
+<!-- load Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<!-- Optional JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="fluid-container">
+        <div class="row">
+            <div class="col-12">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div>
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith%}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5" style="background-color:royalblue;">
+                <h1>My Critical Review</h1>
+            </div>
+            <div class="col-7" style="background-color:royalblue;">
+                <img src="{{ url_for('static', filename='images/header_image.jpg') }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h1>Register</h1>
+            </div>
+            <div class="col-6">
+                <h1>Log-In</h1>
+            </div>
+        </div>
+        
+        <div class="row">
+            <form action="/user/register" method="POST" class="col-1" style="background-color: lightgray;">
+                <div class="form-group mt-3">
+                    <label for="first_name">First Name:</label>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="last_name">Last Name:</label>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="email">Email:</label>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="password">Password:</label>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="confirm_password">Confirm Password:</label>
+                </div>
+            </form>
+            <form action="/user/register" method="POST" class="col-5" style="background-color: lightgray;">
+                <div class="form-group mt-3">
+                    <input type="text" name="first_name">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="last_name">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="email">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="password">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="confirm_password">
+                </div>
+                <div style="padding-top: 10px;">
+                    <button class="btn btn-primary" style="background-color:lightseagreen; border-radius: 8px;">Submit</button>
+                </div>
+            </form>
+            <form action="/user/login" method="POST" class="col-1" style="background-color: lightgray;">
+                <div class="form-group mt-3">
+                    <label for="email">Email:</label>
+                </div>
+                <div class="form-group mt-3">
+                    <label for="password">Password:</label>
+                </div>
+            </form>
+            <form action="/user/login" method="POST" class="col-5" style="background-color: lightgray;">
+                <div class="form-group mt-3">
+                    <input type="text" name="email">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="password">
+                </div>
+                <div style="padding-top: 10px;">
+                    <button class="btn btn-primary" style="background-color: lightseagreen; border-radius: 8px;">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+

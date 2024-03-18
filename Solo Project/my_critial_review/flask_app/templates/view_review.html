@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap Example</title>
+<!-- load Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<!-- Optional JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="fluid-container">
+        <div class="row">
+            <div class="col-12">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div>
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith%}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5" style="background-color:royalblue;">
+                <h1>My Critical Review</h1></br>
+                <h2>
+                    {% for review in reviews %}
+                        A Review by {{review.owner.first_name}}
+                    {% endfor %}
+                </h2>
+            </div>
+            <div class="col-6" style="background-color:royalblue;">
+                <img src="{{ url_for('static', filename='images/header_image.jpg') }}">
+            </div>
+            <div class="col-1" style="background-color:royalblue;">
+                <a href="/dashboard" class="btn btn-primary" style="background-color: midnightblue; border-radius: 8px;">Dashboard</a></br>
+                <a href="/user/logout" class="btn btn-primary" style="background-color:midnightblue; border-radius: 8px;">Logout</a>
+            </div>
+        </div>
+        <div class="row" style="background-color: rgb(103, 176, 224);">
+            <div class="col-6">
+                <h4>
+                    {% for review in reviews %}
+                    Added by: {{review.owner.first_name}} {{review.owner.last_name}}
+                    {% endfor %}
+                </h4>
+            </div>
+            <div class="col-6">
+                <h4>
+                    {% for review in reviews %}
+                    Created on: {{review.created_at}}
+                    {% endfor %}
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" style="padding-top: 30px; background-color: lightgray;">
+                <h3>
+                    {% for review in reviews %}
+                        Tittle: {{review.tittle}}</br>
+                    {% endfor %}
+                </h3>
+            </div>
+            <div class="col-6" style="padding-top: 60px; background-color: lightgray;">
+                <h3>
+                    {% for review in reviews %}
+                        Comments:</br> {{review.comments}}</br>
+                    {% endfor %}
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" style="padding-bottom: 60px; background-color: lightgray;">
+                <h3>
+                    {% for review in reviews %}
+                        Media: {{review.media}}
+                    {% endfor %}
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" style="background-color: lightgray;" >
+                <h3>
+                    {% for review in reviews %}
+                        Rating: {{review.rating}}
+                    {% endfor %}
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" style="background-color: lightgray;">
+                <h3>
+                    {% for review in reviews %}
+                        {% if review.owner.id == user.id %}</br>
+                            <a href="/review/edit/{{review.id}}" class="btn btn-primary" style="background-color:aqua; color: black;">Edit</a>
+                            <a href="/review/delete/{{review.id}}" class="btn btn-primary" style="background-color: aqua; color: black;">Delete</a>
+                        {% endif %}
+                    {% endfor %}
+                </h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
